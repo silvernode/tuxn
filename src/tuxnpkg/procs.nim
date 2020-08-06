@@ -17,28 +17,13 @@ proc helpOpt*() =
     in    show info for package
     """
 
-proc scan_args*(): TaintedString =
-    var nargv =  newSeq[string](paramCount())
-    var x = 0
-
-
-    #if paramCount() == x:
-    #  helpOpt()
-    #  quit(0)
+proc pkmCmd*(command: string, arg: TaintedString) =
     
-    while x < paramCount():
-      nargv[x] = paramStr(x+1)  # first is program name
-      x += 1
-      return nargv[x]
-
-
-proc pkmCmd*(command: string, arg: string) =
-
-  if arg == "":
-    discard execShellCmd(command)
-  else:
-    echo command, arg
-    #discard execShellCmd(fmt"{command} {arg}")
+    if arg == "":
+      discard execShellCmd(command)
+    else:
+      echo command, arg
+      discard execShellCmd(fmt"{command} {arg}")
     
 
 
