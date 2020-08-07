@@ -4,10 +4,7 @@
 import 
   tuxnpkg/package_managers,
   tuxnpkg/procs,
-  os, 
-  strformat, 
-  strutils, 
-  tables
+  os
 
 when isMainModule:
   var argCount = paramCount()
@@ -31,7 +28,6 @@ when isMainModule:
 
 
   for n in 1 ..< argCount:
-    echo cmdArgs[n]
     pkgArgs = pkgArgs & " " & cmdArgs[n]
 
   case cmdArgs[0]
