@@ -4,7 +4,8 @@
 import 
   tuxnpkg/package_managers,
   tuxnpkg/procs,
-  os
+  os,
+  colorize
 
 when isMainModule:
   var argCount = paramCount()
@@ -14,14 +15,24 @@ when isMainModule:
 
   if fileExists(apt.filePath):
     pkm = apt
-  elif fileExists(dnf.filePath):
-    pkm = dnf
+  #elif fileExists(dnf.filePath):
+  #  pkm = dnf
   elif fileExists(eopkg.filePath):
     pkm = eopkg
   elif fileExists(pacman.filePath):
     pkm = pacman
   else:
-    echo "No supported package manager found"
+    echo fgLightRed("No supported package manager found")
+    stdout.write fgLightCyan("Would you like to create custom bindings?[Y/n]: ")
+    var custom = readLine(stdin)
+
+    case custom
+      of "n", "N", "no", "No", "NO":
+        quit(0)
+
+      else:
+        customPkm()
+
     quit(0)
 
   
