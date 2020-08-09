@@ -23,15 +23,19 @@ when isMainModule:
     pkm = pacman
   else:
     echo fgLightRed("No supported package manager found")
-    stdout.write fgLightCyan("Would you like to create custom bindings?[Y/n]: ")
-    var custom = readLine(stdin)
+    while true:
+      stdout.write fgLightCyan("Would you like to create custom bindings?[Y/n]: ")
+      var custom = readLine(stdin)
+    
+      case custom
+        of "n", "N", "no", "No", "NO":
+          quit(0)
 
-    case custom
-      of "n", "N", "no", "No", "NO":
-        quit(0)
+        of "y", "Y", "yes", "Yes", "YES":
+          customPkm()
 
-      else:
-        customPkm()
+        else:
+          echo fgLightYellow("Please type 'y' or 'n'")
 
     quit(0)
 
