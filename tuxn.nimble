@@ -13,3 +13,4 @@ bin           = @["tuxn"]
 # Dependencies
 
 requires "nim >= 1.2.4"
+requires "colorize"
