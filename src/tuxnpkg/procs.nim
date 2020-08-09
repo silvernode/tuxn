@@ -1,6 +1,7 @@
 import
   os, 
-  strformat
+  strformat,
+  colorize
 
 proc helpOpt*() =
     echo """
@@ -27,7 +28,10 @@ proc pkmCmd*(command: string, arg: TaintedString) =
       discard execShellCmd(fmt"{command} {arg}")
     
 proc sigTerm() {.noconv.} =
-      echo "cancelled"
+      echo fgLightRed("""
+
+
+cancelled""")
       quit(1)
     
 
