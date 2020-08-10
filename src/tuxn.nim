@@ -15,8 +15,8 @@ when isMainModule:
 
   if fileExists(apt.filePath):
     pkm = apt
-  #elif fileExists(dnf.filePath):
-  #  pkm = dnf
+  elif fileExists(dnf.filePath):
+    pkm = dnf
   elif fileExists(eopkg.filePath):
     pkm = eopkg
   elif fileExists(pacman.filePath):
