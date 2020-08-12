@@ -5,6 +5,7 @@ import
   colorize
 
 when isMainModule:
+  var tuxnVersion = "0.1.0 alpha"
   var argCount = paramCount()
   var cmdArgs = commandLineParams()
   var pkgArgs: TaintedString
@@ -67,6 +68,9 @@ when isMainModule:
 
     of "if", "-if", "info":
       pkmCmd(pkm.infoCmd, pkgArgs)
+
+    of "v", "-v", "version":
+      echo fgLightGreen(tuxnVersion)
 
     else:
       helpOpt()
