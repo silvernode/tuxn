@@ -10,7 +10,7 @@ when isMainModule:
   var cmdArgs = commandLineParams()
   var pkgArgs: TaintedString
   var pkm: PackageManager
-
+  
   if fileExists(apt.filePath):
     pkm = apt
   elif fileExists(dnf.filePath):
@@ -43,8 +43,8 @@ when isMainModule:
   for n in 1 ..< argCount:
     pkgArgs = pkgArgs & " " & cmdArgs[n]
 
-  case cmdArgs[0]
-
+  try:
+    case cmdArgs[0]
     of "i", "-i","install":
       pkmCmd(pkm.installCmd, pkgArgs)
     
@@ -75,5 +75,6 @@ when isMainModule:
     else:
       helpOpt()
       quit(0)
+  except: helpOpt();quit(1)
   
 
