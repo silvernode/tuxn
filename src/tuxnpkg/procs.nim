@@ -17,6 +17,7 @@ sup   sync and upgrade
 s     search for a package
 c     clean package cache
 in    show info for package
+v     show tuxn version
     """
 
 proc pkmCmd*(command: string, arg: TaintedString) =
