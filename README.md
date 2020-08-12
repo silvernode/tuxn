@@ -24,7 +24,7 @@ bash
 ```
 ## Building
 ```
-git clone https://github.com/silvernode/tuxn.
+git clone https://github.com/silvernode/tuxn.git
 ```
 ```
 cd tuxn
