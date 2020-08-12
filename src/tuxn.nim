@@ -5,7 +5,7 @@ import
   colorize
 
 when isMainModule:
-  const tuxnVersion: string = "0.1.1 alpha"
+  const tuxnVersion: string = "v0.1.1 alpha"
   var argCount = paramCount()
   var cmdArgs = commandLineParams()
   var pkgArgs: TaintedString
