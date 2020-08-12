@@ -6,7 +6,7 @@ import
 proc helpOpt*() =
     echo """
 
-tuxn [i, r, u, sup, s, c ] <pkgname>
+tuxn [i, r, u, sup, s, c, in, v ] <pkgname>
 
 i     install a package
 ri    reinstall a package
