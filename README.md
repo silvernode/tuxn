@@ -35,3 +35,7 @@ nimble build
 ```
 ./tuxn -h
 ```
+
+## Binary Realeses
+
+https://github.com/silvernode/tuxn/releases
