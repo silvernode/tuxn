@@ -1,5 +1,5 @@
 # Tuxn
-
+A package manager wrapper for unix-like systems.
 
 ## Get & Install Nim
 
