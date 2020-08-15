@@ -20,6 +20,8 @@ when isMainModule:
       pkm = eopkg
     elif fileExists(pacman.filePath):
       pkm = pacman
+    elif fileExists(xbps.filePath):
+      pkm = xbps
     else:
       customPkm()
       quit(1)

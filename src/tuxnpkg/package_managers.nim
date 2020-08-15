@@ -19,7 +19,7 @@ var
         filePath: "/usr/bin/",
         installCmd: "",
         reinstallCmd: "",
-        removeCmd: ""
+        removeCmd: "",
         updateCmd: "",
         upgradeCmd: "",
         supCmd: "",
@@ -78,6 +78,20 @@ var
         searchCmd: "pacman -Ss",
         cleanCmd: "pacman -Scc",
         infoCmd: "pacman -Si"
+    )
+
+
+    xbps* = PackageManager(
+        filePath: "/usr/bin/xbps-install",
+        installCmd: "xbps-install",
+        reinstallCmd: "xbps-install -f",
+        removeCmd: "xbps-remove",
+        updateCmd: "xbps-install -S",
+        upgradeCmd: "xbps-install -u",
+        supCmd: "xbps-install -Su",
+        searchCmd: "xbps-query -Rs",
+        cleanCmd: "xbps-remove -O",
+        infoCmd: "xbps-query -RS"
     )
 
     
