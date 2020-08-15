@@ -25,7 +25,6 @@ proc pkmCmd*(command: string, arg: TaintedString) =
     if arg == "":
       discard execShellCmd(command)
     else:
-      echo command, arg
       discard execShellCmd(fmt"{command} {arg}")
     
 proc sigTerm() {.noconv.} =
@@ -38,59 +37,87 @@ cancelled""")
 
 proc customPkm*() =
   setControlCHook(sigTerm)
-  ## Interactively create custom package manager bindings
-  stdout.write("Name of custom package manager: ")
-  var pkmName = readLine(stdin)
-
-  stdout.write("Package manager file path: ")
-  var pkmFilePath = readLine(stdin)
-
-  stdout.write("Install command: ")
-  var pkmInstallCmd = readLine(stdin)
-
-  stdout.write("Remove command: ")
-  var pkmRemoveCmd = readLine(stdin)
-
-  stdout.write("Reinstall command: ")
-  var pkmReinstallCmd = readLine(stdin)
-
-  stdout.write("Update command: ")
-  var pkmUpdateCmd = readLine(stdin)
-
-  stdout.write("Upgrade command: ")
-  var pkmUpgradeCmd = readLine(stdin)
-
-  stdout.write("Sync & Update command: ")
-  var pkmSupCmd = readLine(stdin)
-
-  stdout.write("Search command: ")
-  var pkmSearchCmd = readLine(stdin)
-
-  stdout.write("Clean command: ")
-  var pkmCleanCmd = readLine(stdin)
-
-  stdout.write("Info command: ")
-  var pkmInfoCmd = readLine(stdin)
-
   
+  var homeDir = getHomeDir()
+  var pkmDir = fmt"{homeDir}/.tuxn/pkm"
 
-  let lines = [fmt"#{pkmName}", 
-  fmt"filePath = {pkmFilePath}", 
-  fmt"installCmd = {pkmInstallCmd}", 
-  fmt"removeCmd = {pkmRemoveCmd}",
-  fmt"reinstallCmd = {pkmReinstallCmd}", 
-  fmt"updateCmd = {pkmUpdateCmd}", 
-  fmt"upgradeCmd = {pkmUpgradeCmd}", 
-  fmt"supCmd = {pkmSupCmd}", 
-  fmt"searchCmd = {pkmSearchCmd}", 
-  fmt"cleanCmd = {pkmCleanCmd}", 
-  fmt"infoCmd = {pkmInfoCmd}"]
+  if existsDir(pkmDir) != true:
+    createDir(pkmdir)
 
-  
-  echo "Opening file"
-  let file = open(pkmName, fmWrite)
- 
-  defer: file.close()
+  while true:
+    stdout.write(fgLightCyan("Would you like to create custom bindings?:[Y/n]: "))
+    var choice = readLine(stdin)
 
-  for line in lines:
-    file.writeLine(line)
+    try:
+      case choice
+        of "n", "N", "no", "NO", "No":
+          quit(1)
+
+        of "y", "Y", "yes", "YES", "Yes":
+          ## Interactively create custom package manager bindings
+          stdout.write("Name of custom package manager: ")
+          var pkmName = readLine(stdin)
+
+          stdout.write("Package manager file path: ")
+          var pkmFilePath = readLine(stdin)
+
+          stdout.write("Install command: ")
+          var pkmInstallCmd = readLine(stdin)
+
+          stdout.write("Remove command: ")
+          var pkmRemoveCmd = readLine(stdin)
+
+          stdout.write("Reinstall command: ")
+          var pkmReinstallCmd = readLine(stdin)
+
+          stdout.write("Update command: ")
+          var pkmUpdateCmd = readLine(stdin)
+
+          stdout.write("Upgrade command: ")
+          var pkmUpgradeCmd = readLine(stdin)
+
+          stdout.write("Sync & Update command: ")
+          var pkmSupCmd = readLine(stdin)
+
+          stdout.write("Search command: ")
+          var pkmSearchCmd = readLine(stdin)
+
+          stdout.write("Clean command: ")
+          var pkmCleanCmd = readLine(stdin)
+
+          stdout.write("Info command: ")
+          var pkmInfoCmd = readLine(stdin)
+
+          
+
+          let lines = [fmt"#{pkmName}", 
+          fmt"filePath = {pkmFilePath}", 
+          fmt"installCmd = {pkmInstallCmd}", 
+          fmt"removeCmd = {pkmRemoveCmd}",
+          fmt"reinstallCmd = {pkmReinstallCmd}", 
+          fmt"updateCmd = {pkmUpdateCmd}", 
+          fmt"upgradeCmd = {pkmUpgradeCmd}", 
+          fmt"supCmd = {pkmSupCmd}", 
+          fmt"searchCmd = {pkmSearchCmd}", 
+          fmt"cleanCmd = {pkmCleanCmd}", 
+          fmt"infoCmd = {pkmInfoCmd}"]
+
+          var pkmPath = fmt"{pkmdir}/{pkmName}"
+          let file = open(pkmPath, fmWrite)
+        
+          defer: file.close()
+
+          for line in lines:
+            file.writeLine(line)
+
+          if fileExists(pkmPath):
+            echo fgLightGreen(fmt"{pkmName} created in {pkmDir}")
+
+          elif not fileExists(pkmPath):
+            echo fgLightRed(fmt"{pkmName} not created, make sure you have permission to write files")
+            quit(1)
+
+        else:
+          echo fgLightYellow("Please type 'y' or 'n'")
+
+    except: echo "something went wrong"

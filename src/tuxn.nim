@@ -11,31 +11,20 @@ when isMainModule:
   var pkgArgs: TaintedString
   var pkm: PackageManager
   
-  if fileExists(apt.filePath):
-    pkm = apt
-  elif fileExists(dnf.filePath):
-    pkm = dnf
-  elif fileExists(eopkg.filePath):
-    pkm = eopkg
-  elif fileExists(pacman.filePath):
-    pkm = pacman
-  else:
-    echo fgLightRed("No supported package manager found")
-    while true:
-      stdout.write fgLightCyan("Would you like to create custom bindings?[Y/n]: ")
-      var custom = readLine(stdin)
-    
-      case custom
-        of "n", "N", "no", "No", "NO":
-          quit(0)
-
-        of "y", "Y", "yes", "Yes", "YES":
-          customPkm()
-
-        else:
-          echo fgLightYellow("Please type 'y' or 'n'")
-
-    quit(0)
+  try:
+    if fileExists(apt.filePath):
+      pkm = apt
+    elif fileExists(dnf.filePath):
+      pkm = dnf
+    elif fileExists(eopkg.filePath):
+      pkm = eopkg
+    elif fileExists(pacman.filePath):
+      pkm = pacman
+    else:
+      customPkm()
+      quit(1)
+  except:
+    echo "A problem occured, please make sure you have system permissions"
 
   
 
