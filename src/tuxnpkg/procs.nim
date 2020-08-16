@@ -21,13 +21,16 @@ v     show tuxn version
     """
 
 proc pkmCmd*(command: string, arg: TaintedString) =
+    try:
+      if arg == "":
+        discard execShellCmd(command)
+      else:
+        discard execShellCmd(fmt"{command} {arg}")
     
-    if arg == "":
-      discard execShellCmd(command)
-    else:
-      discard execShellCmd(fmt"{command} {arg}")
+    except:
+      echo fgLightRed("Unknown Error: Please submit an issue on https://github.com/silvernode/tuxn")
     
-proc sigTerm() {.noconv.} =
+proc sigTerm*() {.noconv.} =
       echo fgLightRed("""
 
 
