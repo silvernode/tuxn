@@ -12,9 +12,8 @@ when isMainModule:
   var pkm: PackageManager
   
   try:
-    if fileExists(apt.filePath):
-      pkm = apt
-    elif fileExists(brew.filePath) or fileExists("/usr/bin/brew"):
+    
+    if fileExists(brew.filePath) or fileExists("/usr/bin/brew"):
       pkm = brew
     elif fileExists(dnf.filePath):
       pkm = dnf
@@ -24,6 +23,8 @@ when isMainModule:
       pkm = pacman
     elif fileExists(xbps.filePath):
       pkm = xbps
+    elif fileExists(apt.filePath):
+      pkm = apt
     else:
       customPkm()
       quit(1)
