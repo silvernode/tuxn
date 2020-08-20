@@ -41,6 +41,19 @@ var
         infoCmd: "apt-cache show"
     )
 
+    brew* = PackageManager(
+        filePath: "/usr/local/bin/brew",
+        installCmd: "brew install",
+        reinstallCmd: "brew install",
+        removeCmd: "brew remove",
+        updateCmd: "brew update",
+        upgradeCmd: "brew upgrade",
+        supCmd: "brew update && brew upgrade",
+        searchCmd: "brew search",
+        cleanCmd: "brew cleanup",
+        infoCmd: "brew info"
+    )
+
     dnf* = PackageManager(
         filePath: "/usr/bin/dnf",
         installCmd: "dnf install",

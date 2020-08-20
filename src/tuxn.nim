@@ -14,6 +14,8 @@ when isMainModule:
   try:
     if fileExists(apt.filePath):
       pkm = apt
+    elif fileExists(brew.filePath) or fileExists("/usr/bin/brew"):
+      pkm = brew
     elif fileExists(dnf.filePath):
       pkm = dnf
     elif fileExists(eopkg.filePath):
