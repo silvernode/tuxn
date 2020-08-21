@@ -44,7 +44,7 @@ var
     brew* = PackageManager(
         filePath: "/usr/local/bin/brew",
         installCmd: "brew install",
-        reinstallCmd: "brew install",
+        reinstallCmd: "brew reinstall",
         removeCmd: "brew remove",
         updateCmd: "brew update",
         upgradeCmd: "brew upgrade",
