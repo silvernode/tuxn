@@ -1,7 +1,8 @@
 import
   os, 
   strformat,
-  colorize
+  colorize,
+  strutils
 
 proc helpOpt*() =
     echo """
@@ -64,36 +65,57 @@ proc customPkm*() =
           stdout.write("Package manager file path: ")
           var pkmFilePath = readLine(stdin)
 
+          pkmFilePath = escape(pkmFilePath, prefix = "\"", suffix = "\"")
+
           stdout.write("Install command: ")
           var pkmInstallCmd = readLine(stdin)
+
+          pkmInstallCmd = escape(pkmInstallCmd, prefix = "\"", suffix = "\"")
 
           stdout.write("Remove command: ")
           var pkmRemoveCmd = readLine(stdin)
 
+          pkmRemoveCmd = escape(pkmRemoveCmd, prefix = "\"", suffix = "\"")
+
           stdout.write("Reinstall command: ")
           var pkmReinstallCmd = readLine(stdin)
+
+          pkmReinstallCmd = escape(pkmReinstallCmd, prefix = "\"", suffix = "\"")
 
           stdout.write("Update command: ")
           var pkmUpdateCmd = readLine(stdin)
 
+          pkmUpdateCmd = escape(pkmUpdateCmd, prefix = "\"", suffix = "\"")
+
           stdout.write("Upgrade command: ")
           var pkmUpgradeCmd = readLine(stdin)
+
+          pkmUpgradeCmd = escape(pkmUpgradeCmd, prefix = "\"", suffix = "\"")
 
           stdout.write("Sync & Update command: ")
           var pkmSupCmd = readLine(stdin)
 
+          pkmSupCmd = escape(pkmSupCmd, prefix = "\"", suffix = "\"")
+
           stdout.write("Search command: ")
           var pkmSearchCmd = readLine(stdin)
+
+          pkmSearchCmd = escape(pkmSearchCmd, prefix = "\"", suffix = "\"")
 
           stdout.write("Clean command: ")
           var pkmCleanCmd = readLine(stdin)
 
+          pkmCleanCmd = escape(pkmCleanCmd, prefix = "\"", suffix = "\"")
+
           stdout.write("Info command: ")
           var pkmInfoCmd = readLine(stdin)
 
+          pkmInfoCmd = escape(pkmInfoCmd, prefix = "\"", suffix = "\"")
+
           
 
-          let lines = [fmt"#{pkmName}", 
+          let lines = [
+          fmt"#{pkmName}", 
           fmt"filePath = {pkmFilePath}", 
           fmt"installCmd = {pkmInstallCmd}", 
           fmt"removeCmd = {pkmRemoveCmd}",
@@ -103,7 +125,8 @@ proc customPkm*() =
           fmt"supCmd = {pkmSupCmd}", 
           fmt"searchCmd = {pkmSearchCmd}", 
           fmt"cleanCmd = {pkmCleanCmd}", 
-          fmt"infoCmd = {pkmInfoCmd}"]
+          fmt"infoCmd = {pkmInfoCmd}"
+          ]
 
           var pkmPath = fmt"{pkmdir}/{pkmName}"
           let file = open(pkmPath, fmWrite)
