@@ -11,6 +11,7 @@ type
         searchCmd*: string
         cleanCmd*: string
         infoCmd*: string
+        topgradeCmd*: string
 
 
 
@@ -38,7 +39,8 @@ var
         supCmd: "apt update && apt upgrade",
         searchCmd: "apt search",
         cleanCmd: "apt autoremove",
-        infoCmd: "apt-cache show"
+        infoCmd: "apt-cache show",
+        topgradeCmd: "topgrade"
     )
 
     brew* = PackageManager(
@@ -51,7 +53,8 @@ var
         supCmd: "brew update && brew upgrade",
         searchCmd: "brew search",
         cleanCmd: "brew cleanup",
-        infoCmd: "brew info"
+        infoCmd: "brew info",
+        topgradeCmd: "topgrade"
     )
 
     dnf* = PackageManager(
@@ -64,7 +67,8 @@ var
         supCmd: "dnf upgrade --refresh",
         searchCmd: "dnf search",
         cleanCmd: "dnf clean all",
-        infoCmd: "dnf info"
+        infoCmd: "dnf info",
+        topgradeCmd: "topgrade"
     )
 
     eopkg* = PackageManager(
@@ -77,7 +81,8 @@ var
         supCmd: "eopkg sync && eopkg update",
         searchCmd: "eopkg sr",
         cleanCmd: "eopkg clean",
-        infoCmd: "eopkg info"
+        infoCmd: "eopkg info",
+        topgradeCmd: "topgrade"
     )
 
     pacman* = PackageManager(
@@ -90,7 +95,8 @@ var
         supCmd: "pacman -Syu",
         searchCmd: "pacman -Ss",
         cleanCmd: "pacman -Scc",
-        infoCmd: "pacman -Si"
+        infoCmd: "pacman -Si",
+        topgradeCmd: "topgrade"
     )
 
 
@@ -104,7 +110,8 @@ var
         supCmd: "xbps-install -Su",
         searchCmd: "xbps-query -Rs",
         cleanCmd: "xbps-remove -O",
-        infoCmd: "xbps-query -RS"
+        infoCmd: "xbps-query -RS",
+        topgradeCmd: "topgrade"
     )
 
     

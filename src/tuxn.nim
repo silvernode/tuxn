@@ -66,6 +66,9 @@ when isMainModule:
     of "if", "-if", "info":
       pkmCmd(pkm.infoCmd, pkgArgs)
 
+    of "tg", "-tg", "topgrade":
+      pkmCmd(pkm.topgradeCmd, pkgArgs)
+
     of "v", "-v", "version":
       echo fgLightGreen(tuxnVersion)
 
