@@ -17,7 +17,7 @@ ug    upgrade system
 sup   sync and upgrade
 s     search for a package
 c     clean package cache
-in    show info for package
+if    show info for package
 v     show tuxn version
     """
 
