@@ -12,7 +12,7 @@ tuxn [i, r, u, sup, s, c, in, v ] <pkgname>
 i     install a package
 ri    reinstall a package
 r     remove a package
-up    update system
+up    update repositories
 ug    upgrade system
 sup   sync and upgrade
 s     search for a package
