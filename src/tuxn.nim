@@ -48,6 +48,9 @@ when isMainModule:
     of "r", "-r", "remove":
       pkmCmd(pkm.removeCmd, pkgArgs)
 
+    of "up", "-up", "--update":
+      pkmCmd(pkm.updateCmd, pkgArgs)
+
     of "u", "-u", "upgrade":
       pkmCmd(pkm.upgradeCmd, pkgArgs)
 
