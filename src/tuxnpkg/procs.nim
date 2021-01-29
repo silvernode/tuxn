@@ -45,7 +45,7 @@ proc customPkm*() =
   var homeDir = getHomeDir()
   var pkmDir = fmt"{homeDir}/.tuxn/pkm"
 
-  if existsDir(pkmDir) != true:
+  if dirExists(pkmDir) != true:
     createDir(pkmdir)
 
   while true:
